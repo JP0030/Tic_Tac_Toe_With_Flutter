@@ -83,7 +83,15 @@ class _MyAppState extends State<MyApp> {
                 );
               },
             ),
-            
+            if (gameOver) Text(gameOver ? '$currentPlayer wins!' : 'It\'s a draw!'),
+            if (!gameOver) ElevatedButton(
+              onPressed: () => setState(() {
+                board = List.filled(9, '');
+                currentPlayer = 'X';
+                gameOver = false;
+              }),
+              child: Text('Reset'),
+            ),
           ],
         ),
       ),
