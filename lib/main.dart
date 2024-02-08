@@ -49,6 +49,44 @@ class _MyAppState extends State<MyApp> {
     return board.every((element) => element != '');
   }
 
-
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Tic Tac Toe'),
+        ),
+        body: Column(
+          children: [
+            Text('Current player: $currentPlayer'),
+            GridView.builder(
+              shrinkWrap: true,
+              itemCount: 9,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => onCellTapped(index),
+                  child: Container(
+                    margin: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: Center(
+                      child: Text(
+                        board[index],
+                        style: const TextStyle(fontSize: 40),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            
+          ],
+        ),
+      ),
+    );
   }
 }
